@@ -3,12 +3,16 @@ Job Tool
 Setup a standard set of environmental variables based on project keyword
 
 """
+from __future__ import print_function
 import os,sys,argparse,ConfigParser
 
 TOOL_NAME="job"
 DESCRIPT="export set of env vars based on project keyword"
 PROJ_KEY="project"
 DEFAULT_HEADER_NAME="DEFAULTS"
+
+def eprint(*args, **kwargs):
+    print(*args, file=sys.stderr, **kwargs)
 
 def create_parser_from_default_configs(key_val_pairs):
     parser = argparse.ArgumentParser(description=DESCRIPT)
@@ -28,7 +32,9 @@ def main():
     config_file_path = os.path.join(os.environ['HOME'], '.' + TOOL_NAME)
     config = ConfigParser.ConfigParser()
     config.read(config_file_path)
-    if not config.has_section(DEFAULT_HEADER_NAME): sys.exit(1)
+    if not config.has_section(DEFAULT_HEADER_NAME):
+        eprint("ERROR reading config file ~/.job")
+        sys.exit(1)
 
     # Setup commandline parser
     parser = create_parser_from_default_configs(
@@ -60,4 +66,4 @@ def main():
     return terminal_command_string(settings)
 
 if __name__ == "__main__":
-    print main()
+    print(main())
