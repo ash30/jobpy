@@ -1,6 +1,6 @@
-if [[ $@ == *edit* ]]
+if [[ $@ == --h ]]
 then
-	jobpy "$@"
+	jobcmd "$@"
 else
-	eval `jobpy "$@"`
+	eval `jobcmd.py "$@"`
 fi
