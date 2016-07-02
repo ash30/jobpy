@@ -31,6 +31,7 @@ def main():
     # Setup config reader
     config_file_path = os.path.join(os.environ['HOME'], '.' + TOOL_NAME)
     config = ConfigParser.ConfigParser()
+    config.optionxform = str # case sensitive
     config.read(config_file_path)
     if not config.has_section(DEFAULT_HEADER_NAME):
         eprint("ERROR reading config file ~/.job")
