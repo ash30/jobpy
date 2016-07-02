@@ -67,7 +67,7 @@ def main():
     # add alittle setup to terminal
     settings['PS1'] = terminal_cusor_text(project_name_without_quotes)
 
-    return terminal_command_string(settings)
+    print(terminal_command_string(settings))
 
 if __name__ == "__main__":
     print(main())
