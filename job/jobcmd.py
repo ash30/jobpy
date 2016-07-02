@@ -54,6 +54,9 @@ def main():
         settings.update(
             {k:v for k,v in config.items(section=project_name_without_quotes)}
         )
+    elif project:
+        eprint("ERROR project specified doesn't exist")
+        sys.exit(1)
 
     # Finally merge in commandline args (they override everything else)
     settings.update(args)
