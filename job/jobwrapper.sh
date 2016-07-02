@@ -1,6 +1,6 @@
 if [[ $@ == --h ]]
 then
-	jobcmd "$@"
+	jobpy "$@"
 else
-	eval `jobcmd.py "$@"`
+	eval `jobpy --project "$@"`
 fi
