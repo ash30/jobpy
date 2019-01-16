@@ -16,8 +16,13 @@ def eprint(*args, **kwargs):
 
 def create_parser_from_default_configs(key_val_pairs):
     parser = argparse.ArgumentParser(description=DESCRIPT)
+
     for arg,initial_val in key_val_pairs:
         parser.add_argument("--{}".format(arg))
+
+    # Default args if not present
+    if "project" not in { arg for arg,_ in key_val_pairs}:
+        parser.add_argument("--project")
     return parser
             
 def terminal_cusor_text(project_name):
